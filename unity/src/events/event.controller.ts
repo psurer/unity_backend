@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, } from '@nestjs/common';
+import { EventModel } from './event.model';
 import { EventService } from './events.service';
 
 @Controller('events')
@@ -6,12 +7,8 @@ export class EventController {
   constructor(private readonly eventService: EventService) {}
 
   @Get()
-  getEvents(): string[]{
+  getEvents(): EventModel[]{
     return this.eventService.findAll();
   }
   
-  @Get(':id')
-  getEvent(id: string): string {
-    return this.eventService.findOne(id);
-  }
 }
